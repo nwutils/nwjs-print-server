@@ -1,0 +1,26 @@
+{
+  "name": "pizzanuvola-print",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/nw/bin/nw ."
+  },
+  "main": "public/index.html",
+  "window": {
+    "title": "node-webkit demo",
+    "icon": "",
+    "toolbar": true,
+    "frame": false,
+    "width": 1,
+    "height": 1,
+    "position": "mouse",
+    "min_width": 1,
+    "min_height": 1,
+    "max_width": 1,
+    "max_height": 1
+  },
+  "dependencies": {
+    "nw": "^0.12.1",
+    "printer": "^0.1.1"
+  }
+}
