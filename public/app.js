@@ -1,10 +1,16 @@
 "use strict";
 
-var gui = require('nw.gui');
-var win = gui.Window.get();
-var tray = new gui.Tray({ icon: 'public/images/icon.png' });
-var PrintersMenu = require('./lib/printers-menu.js');
-var printersMenuInstance = new PrintersMenu(gui);
+let gui = require('nw.gui');
+let PrintersMenu = require('./lib/printers-menu.js');
+let PrintersManager = require('./lib/printers-manager.js');
+let Connector = require('./lib/connector.js');
+
+let win = gui.Window.get();
+let tray = new gui.Tray({ icon: 'public/images/icon.png' });
+
+let printersManager = PrintersManager.instance;
+let printersMenuInstance = new PrintersMenu(gui, printersManager);
+let connector = new Connector(printersManager);
 
 win.hide();
 

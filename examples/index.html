@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Print example</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+
+<button type="button" class="print-button" disabled="true">Raw print</button>
+
+Check console.log
+
+<script>
+    $(function () {
+        var printServer = io('http://localhost:9001');
+
+        printServer.on('connect', function () {
+            var button = $('.print-button');
+
+            console.log('connected');
+
+            button.prop('disabled', false);
+            button.on('click', function () {
+                printServer.emit('raw-print', 'raw data');
+            });
+        });
+    });
+
+</script>
+</body>
+</html>
