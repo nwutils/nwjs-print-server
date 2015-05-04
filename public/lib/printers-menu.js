@@ -33,13 +33,13 @@ class PrintersMenu {
         return function () {
             let menuItem = this;
             if (menuItem.checked) {
-                printersManager.selectedPrinter = printersManager.loadPrinter(menuItem.label);
+                printersManager.selectedPrinter = menuItem.label;
             }
 
             if (!menuItem.checked && !printersManager.selectedPrinter) {
                 let defaultMenuItem = printersMenu.menuItems[0];
                 defaultMenuItem.checked = true;
-                printersManager.selectedPrinter = printersManager.loadPrinter(defaultMenuItem.label);
+                printersManager.selectedPrinter = defaultMenuItem.label;
             }
         };
     }
@@ -55,8 +55,10 @@ class PrintersMenu {
                     click: this.getDefaultPrintHandler(this)
                 });
             }.bind(this));
+
             if (this.menuItems.length) {
                 this.menuItems[0].checked = true;
+                this.printersManager.selectedPrinter = this.menuItems[0].label;
             }
         } else {
             let noResultsMenuItem = new this.gui.MenuItem({
