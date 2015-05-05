@@ -32,14 +32,20 @@ class PrintersMenu {
         let printersManager = printersMenuInstance.printersManager;
         return function () {
             let menuItem = this;
+
+            printersMenu.menuItems.forEach(function (item) {
+                if(item.type === 'checkbox' && item.label !== menuItem.label) {
+                    item.checked = false;
+                }
+            });
+
             if (menuItem.checked) {
                 printersManager.selectedPrinter = menuItem.label;
             }
 
-            if (!menuItem.checked && !printersManager.selectedPrinter) {
-                let defaultMenuItem = printersMenu.menuItems[0];
-                defaultMenuItem.checked = true;
-                printersManager.selectedPrinter = defaultMenuItem.label;
+            if (!menuItem.checked && printersManager.selectedPrinter === menuItem.label) {
+                menuItem.checked = true;
+                printersManager.selectedPrinter = menuItem.label;
             }
         };
     }

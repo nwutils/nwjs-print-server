@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 let gui = require('nw.gui');
 let PrintersMenu = require('./lib/printers-menu.js');
